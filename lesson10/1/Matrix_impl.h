@@ -4,7 +4,6 @@
 #include <iostream>
 #include <stdexcept>
 
-//Matrix::~Matrix() {}
 
 Matrix::Matrix() {
 	m = {};
@@ -72,13 +71,6 @@ size_t Matrix::colsize() const {
 size_t Matrix::size() const {
 	return m.size();
 }
-
-//size_t Matrix::size() const {
-//	if (m.size() != (m.empty() ? 0 : m[0].size())) {
-//		throw invalid_argument("matrix is not square");
-//	}
-//	return m.size() * (m.empty() ? 0 : m[0].size());
-//}
 
 vector<double>& Matrix::operator[](size_t row) {
 	return m[row];
@@ -151,32 +143,6 @@ Matrix Matrix::operator*(const Matrix& rhs) const {
 			}
 		}
 	}
-	return res;
-}
-
-Matrix Matrix::operator+(double num) const {
-	size_t rows = rowsize();
-	size_t cols = colsize();
-	Matrix res(rows, cols);
-	for (size_t i = 0; i < rows; i++) {
-		for (size_t j = 0; j < cols; j++) {
-			res[i][j] = m[i][j] + num;
-		}
-	}
-	return res;
-}
-
-Matrix Matrix::operator-(double num) const {
-	size_t rows = rowsize();
-	size_t cols = colsize();
-	Matrix res(rows, cols);
-
-	for (size_t i = 0; i < rows; i++) {
-		for (size_t j = 0; j < cols; j++) {
-			res[i][j] = m[i][j] - num;
-		}
-	}
-
 	return res;
 }
 
@@ -284,32 +250,6 @@ Matrix& Matrix::operator*=(const Matrix& rhs) {
 	return *this;
 }
 
-Matrix& Matrix::operator+=(double num) {
-	size_t rows = rowsize();
-	size_t cols = colsize();
-
-	for (size_t i = 0; i < rows; i++) {
-		for (size_t j = 0; j < cols; j++) {
-			m[i][j] += num;
-		}
-	}
-
-	return *this;
-}
-
-Matrix& Matrix::operator-=(double num) {
-	size_t rows = rowsize();
-	size_t cols = colsize();
-
-	for (size_t i = 0; i < rows; i++) {
-		for (size_t j = 0; j < cols; j++) {
-			m[i][j] -= num;
-		}
-	}
-
-	return *this;
-}
-
 Matrix& Matrix::operator*=(double multiplier){
 	size_t rows = rowsize();
 	size_t cols = colsize();
@@ -354,6 +294,5 @@ Matrix Matrix::operator^(int power) const {
 	
 	return res;
 }
-
 
 #endif // !MATRIX_IMPL_H

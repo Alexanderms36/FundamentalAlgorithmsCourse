@@ -2,7 +2,9 @@
 #ifndef MATRIX_H
 #define MATRIX_H
 #include <vector>
+
 using namespace std;
+
 class Matrix {
 private:
 	vector<vector<double>> m;
@@ -15,11 +17,10 @@ public:
 	static Matrix row_matrix(size_t n);
 	static Matrix col_matrix(size_t n);
 	Matrix(const vector<double>& diag);
-	Matrix(const Matrix& obj); //копирование
-	Matrix(Matrix&& obj); //перемещение
+	Matrix(const Matrix& obj);
+	Matrix(Matrix&& obj);
 	Matrix(const vector<vector<double>>& src);
 	Matrix(vector<vector<double>>&& src);
-
 
 	size_t rowsize() const;
 	size_t colsize() const;
@@ -32,8 +33,6 @@ public:
 	Matrix operator-(const Matrix& rhs) const;
 	Matrix operator*(const Matrix& rhs) const;
 
-	Matrix operator+(double num) const;
-	Matrix operator-(double num) const;
 	Matrix operator*(double multiplier) const;
 	Matrix operator/(double divider) const;
 	friend Matrix operator*(double multiplier, const Matrix& obj);
@@ -43,11 +42,8 @@ public:
 	Matrix& operator-=(const Matrix& rhs);
 	Matrix& operator*=(const Matrix& rhs);
 
-	Matrix& operator+=(double num);
-	Matrix& operator-=(double num);
 	Matrix& operator*=(double multiplier);
 	Matrix& operator/=(double divider);
-
 
 	Matrix operator^(int power) const;
 };
